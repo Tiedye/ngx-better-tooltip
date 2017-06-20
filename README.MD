@@ -8,15 +8,11 @@ To install this library, run:
 $ npm install ngx-better-tooltip --save
 ```
 
-## Consuming your library
+## Usage
 
-Once you have published your library to npm, you can import your library in any Angular application by running:
+There are three directuves you must use `toottip-wrapper`, `toottip-target`, and `toottip-content`.  See below
 
-```bash
-$ npm install ngx-better-tooltip
-```
-
-and then from your Angular `AppModule`:
+From your Angular `AppModule`:
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -34,8 +30,7 @@ import { SampleModule } from 'ngx-better-tooltip';
   imports: [
     BrowserModule,
 
-    // Specify your library as an import
-    LibraryModule
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -43,29 +38,24 @@ import { SampleModule } from 'ngx-better-tooltip';
 export class AppModule { }
 ```
 
-Once your library is imported, you can use its components, directives and pipes in your Angular application:
 
 ```xml
-<!-- You can now use your library component in app.component.html -->
-<h1>
-  {{title}}
-</h1>
-<sampleComponent></sampleComponent>
+<tooltip-wrapper direction="right">
+  <tooltip-content>
+    Bye
+  </tooltip-content>
+  <tooltip-target>
+    Hi
+  </tooltip-target>
+</tooltip-wrapper>
 ```
 
-## Development
+![demo](./demo.png "Demo")
 
-To generate all `*.js`, `*.d.ts` and `*.metadata.json` files:
-
-```bash
-$ npm run build
-```
-
-To lint all `*.ts` files:
-
-```bash
-$ npm run lint
-```
+All available options are:
+ - color: background color
+ - display: css diplay mode of the host, defaults to `inline-block`
+ - direction: defaults to `top`
 
 ## License
 

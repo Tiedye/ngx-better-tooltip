@@ -18,7 +18,7 @@ export class TooltipComponent implements OnInit {
   @HostBinding('class.right') private _right = false;
   @HostBinding('class.top') private _top = true;
   @HostBinding('class.bottom') private _bottom = false;
-  @HostBinding('style.display') display = 'inline-block';
+  @Input() @HostBinding('style.display') display = 'inline-block';
   @Input() set direction(direction: 'left'|'right'|'top'|'bottom') {
     this._left = false;
     this._right = false;
