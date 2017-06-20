@@ -56,6 +56,7 @@ All available options are:
  - color: background color
  - display: css diplay mode of the host, defaults to `inline-block`
  - direction: defaults to `top`
+ - toggle: weather of not the tooltip is toggled on click or on mouseover
 
 ## License
 

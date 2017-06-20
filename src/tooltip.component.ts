@@ -1,10 +1,18 @@
-import { Component, Directive, OnInit, HostBinding, HostListener, Input } from '@angular/core';
+import { Component, Directive, OnInit, HostBinding, HostListener, Input, Output, ContentChild, EventEmitter } from '@angular/core';
 
+// tslint:disable-next-line:directive-selector
 @Directive({selector: 'tooltip-content'})
 export class TooltipContentDirective {}
 
+// tslint:disable-next-line:directive-selector
 @Directive({selector: 'tooltip-target'})
-export class TooltipTargetDirective {}
+export class TooltipTargetDirective {
+  click = new EventEmitter<void>();
+
+  @HostListener('click') private _click() {
+    this.click.emit();
+  }
+}
 
 @Component({
   selector: 'tooltip-wrapper',
@@ -12,8 +20,18 @@ export class TooltipTargetDirective {}
   styleUrls: ['./tooltip.component.scss']
 })
 export class TooltipComponent implements OnInit {
+  @ContentChild(TooltipTargetDirective) target: TooltipTargetDirective;
 
-  @HostBinding('class.active') active = false;
+  get active() { return this._active; }
+  set active(v: boolean) {
+    this._active = v;
+    if (v) {
+      this.opened.emit();
+    } else {
+      this.closed.emit();
+    }
+  }
+  @HostBinding('class.active') private _active = false;
   @HostBinding('class.left') private _left = false;
   @HostBinding('class.right') private _right = false;
   @HostBinding('class.top') private _top = true;
@@ -43,13 +61,39 @@ export class TooltipComponent implements OnInit {
     }
   }
   @Input() color = '#39F';
+  @Input() toggle = false;
+  @Output() opened = new EventEmitter<void>();
+  @Output() closed = new EventEmitter<void>();
 
-  @HostListener('mouseenter') onmouseenter() { this.active = true; }
-  @HostListener('mouseleave') onmouseleave() { this.active = false; }
+  @HostListener('mouseenter') onmouseenter() {
+    if (!this.toggle) {
+      this.active = true;
+    }
+  }
+  @HostListener('mouseleave') onmouseleave() {
+    if (!this.toggle) {
+      this.active = false;
+    }
+  }
+
+  doToggle() {
+    if (this.toggle) {
+      this.active = !this.active;
+    }
+  }
+
+  close() {
+    this.active = false;
+  }
+
+  open() {
+    this.active = true;
+  }
 
   constructor() { }
 
   ngOnInit() {
+    this.target.click.subscribe(() => this.doToggle());
   }
 
 }
