@@ -1,0 +1,79 @@
+:host {
+    position: relative;
+}
+
+.content-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+}
+
+.content {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+}
+
+.box {
+    /* background: #39F; */
+    padding: 0.5rem;
+}
+/* .arrow {
+     fill: #39F;
+} */
+.arrow-left {
+    width: 0.5rem;
+    display: none;
+}
+.arrow-right {
+    width: 0.5rem;
+    display: none;
+}
+.arrow-top {
+    height: 0.5rem;
+    display: none;
+}
+.arrow-bottom {
+    height: 0.5rem;
+    display: none;
+}
+:host(.left) .arrow-left {display: inline;}
+:host(.right) .arrow-right {display: inline;}
+:host(.top) .arrow-top {display: inline;}
+:host(.bottom) .arrow-bottom {display: inline;}
+
+:host(.left) .content {
+    flex-direction: row;
+}
+:host(.right) .content {
+    flex-direction: row-reverse;
+}
+:host(.top) .content {
+    flex-direction: column;
+}
+:host(.bottom) .content {
+    flex-direction: column-reverse;
+}
+
+:host(.left) .content-wrapper {
+    right: 100%;
+    flex-direction: row-reverse;
+}
+:host(.right) .content-wrapper {
+    left: 100%;
+    flex-direction: row;
+}
+:host(.top) .content-wrapper {
+    bottom: 100%;
+    flex-direction: column-reverse;
+}
+:host(.bottom) .content-wrapper {
+    top:100%;
+    flex-direction: column;
+}
+
+:host(.active) .content-wrapper {
+    display: flex;
+}

@@ -1,0 +1,20 @@
+<div class="content-wrapper">
+  <div class="content">
+    <div [style.background]="color" class="box">
+      <ng-content select="tooltip-content"></ng-content>
+    </div>
+    <svg [style.fill]="color" class="arrow arrow-left" viewBox="0 0 1 2">
+      <path d="M 0 0 L 1 1 L 0 2"></path>
+    </svg>
+    <svg [style.fill]="color" class="arrow arrow-right" viewBox="0 0 1 2">
+      <path d="M 1 0 L 0 1 L 1 2"></path>
+    </svg>
+    <svg [style.fill]="color" class="arrow arrow-top" viewBox="0 0 2 1">
+      <path d="M 0 0 L 1 1 L 2 0"></path>
+    </svg>
+    <svg [style.fill]="color" class="arrow arrow-bottom" viewBox="0 0 2 1">
+      <path d="M 0 1 L 1 0 L 2 1"></path>
+    </svg>
+  </div>
+</div>
+<ng-content select="tooltip-target"></ng-content>
