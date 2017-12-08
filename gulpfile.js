@@ -71,8 +71,8 @@ gulp.task('rollup:fesm', function () {
     .pipe(rollup({
 
       // Bundle's entry point
-      // See https://github.com/rollup/rollup/wiki/JavaScript-API#entry
-      entry: `${buildFolder}/index.js`,
+      // See https://rollupjs.org/#big-list-of-options
+      input: `${buildFolder}/index.js`,
 
       // Allow mixing of hypothetical and actual files. "Actual" files can be files
       // accessed by Rollup or produced by plugins further down the chain.
@@ -81,14 +81,14 @@ gulp.task('rollup:fesm', function () {
       allowRealFiles: true,
 
       // A list of IDs of modules that should remain external to the bundle
-      // See https://github.com/rollup/rollup/wiki/JavaScript-API#external
+      // See https://rollupjs.org/#big-list-of-options
       external: [
         '@angular/core',
         '@angular/common'
       ],
 
       // Format of generated bundle
-      // See https://github.com/rollup/rollup/wiki/JavaScript-API#format
+      // See https://rollupjs.org/#big-list-of-options
       format: 'es'
     }))
     .pipe(gulp.dest(distFolder));
@@ -104,8 +104,8 @@ gulp.task('rollup:umd', function () {
     .pipe(rollup({
 
       // Bundle's entry point
-      // See https://github.com/rollup/rollup/wiki/JavaScript-API#entry
-      entry: `${buildFolder}/index.js`,
+      // See https://rollupjs.org/#big-list-of-options
+      input: `${buildFolder}/index.js`,
 
       // Allow mixing of hypothetical and actual files. "Actual" files can be files
       // accessed by Rollup or produced by plugins further down the chain.
@@ -114,26 +114,26 @@ gulp.task('rollup:umd', function () {
       allowRealFiles: true,
 
       // A list of IDs of modules that should remain external to the bundle
-      // See https://github.com/rollup/rollup/wiki/JavaScript-API#external
+      // See https://rollupjs.org/#big-list-of-options
       external: [
         '@angular/core',
         '@angular/common'
       ],
 
       // Format of generated bundle
-      // See https://github.com/rollup/rollup/wiki/JavaScript-API#format
+      // See https://rollupjs.org/#big-list-of-options
       format: 'umd',
 
       // Export mode to use
-      // See https://github.com/rollup/rollup/wiki/JavaScript-API#exports
+      // See https://rollupjs.org/#big-list-of-options
       exports: 'named',
 
       // The name to use for the module for UMD/IIFE bundles
       // (required for bundles with exports)
-      // See https://github.com/rollup/rollup/wiki/JavaScript-API#modulename
-      moduleName: 'ngx-better-tooltip',
+      // See https://rollupjs.org/#big-list-of-options
+      name: 'ngx-better-tooltip',
 
-      // See https://github.com/rollup/rollup/wiki/JavaScript-API#globals
+      // See https://rollupjs.org/#big-list-of-options
       globals: {
         typescript: 'ts'
       }
